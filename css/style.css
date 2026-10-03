@@ -1,4 +1,7 @@
-/* General Reset */
+/* =========================
+   General Reset
+========================= */
+
 * {
     margin: 0;
     padding: 0;
@@ -12,27 +15,33 @@ body {
     line-height: 1.6;
 }
 
-/* Header */
+
+/* =========================
+   Header
+========================= */
+
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 20px 50px;
     background-color: #e23744;
     color: white;
 }
 
 .logo img {
-    height: 50px;
+    height: 40px;
+    width: auto;
 }
 
 header ul {
     display: flex;
     list-style: none;
+    align-items: center;
 }
 
 header ul li {
-    margin-left: 20px;
+    margin-left: 25px;
 }
 
 header ul li a {
@@ -46,42 +55,11 @@ header ul li a:hover {
     color: #ffd700;
 }
 
-/* Header */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background-color: #e23744;
-    color: white;
-}
 
-.logo img {
-    height: 30px;  /* Reduced size */
-    width: auto;   /* Maintain aspect ratio */
-}
+/* =========================
+   Main
+========================= */
 
-header ul {
-    display: flex;
-    list-style: none;
-}
-
-header ul li {
-    margin-left: 20px;
-}
-
-header ul li a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease;
-}
-
-header ul li a:hover {
-    color: #ffd700;
-}
-
-/* Main Section */
 main {
     padding: 50px;
 }
@@ -93,68 +71,129 @@ main section {
     border-radius: 10px;
 }
 
-/* First Section (hero section) */
+
+/* =========================
+   Hero Section
+========================= */
+
 main section:first-of-type {
-    background: url('/img/bg.png') no-repeat center center/cover;
+    background: url("../image/bg.png") no-repeat center center;
+    background-size: cover;
+
     color: white;
     min-height: 60vh;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    position: relative;
+    overflow: hidden;
+}
+
+/* Dark overlay for better text visibility */
+main section:first-of-type::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+main section:first-of-type > * {
+    position: relative;
+    z-index: 1;
 }
 
 main section:first-of-type img {
     height: 100px;
+    width: auto;
 }
 
 main section:first-of-type p {
     font-size: 24px;
     margin-top: 20px;
+    font-weight: bold;
 }
 
 main section:first-of-type input {
-    margin-top: 20px;
-    padding: 10px;
-    width: 300px;
+    margin-top: 25px;
+    padding: 15px 20px;
+
+    width: 500px;
+    max-width: 90%;
+
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
+
     font-size: 16px;
     outline: none;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Second Section (Food Delivery Info) */
+main section:first-of-type input:focus {
+    box-shadow: 0 0 0 3px rgba(226, 55, 68, 0.5);
+}
+
+
+/* =========================
+   Food Delivery Section
+========================= */
+
 main section:nth-of-type(2) {
-    background-color: #fff;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: white;
+
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
     color: #333;
 }
 
 main section:nth-of-type(2) h2 {
     font-size: 30px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     color: #e23744;
 }
 
-main section:nth-of-type(2) p {
+main section:nth-of-type(2) > p {
     font-size: 18px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
+
+
+/* =========================
+   Feature Cards
+========================= */
 
 .main-features {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: stretch;
+
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 25px;
 }
 
 .feature {
-    width: 250px;
+    width: 280px;
+
     background-color: #e23744;
     color: white;
-    padding: 20px;
+
+    padding: 25px;
+
     border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+
+    transition: transform 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+.feature:hover {
+    transform: translateY(-8px);
+
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .feature h3 {
@@ -166,13 +205,70 @@ main section:nth-of-type(2) p {
     font-size: 16px;
 }
 
-/* Footer */
+
+/* =========================
+   Footer
+========================= */
+
 footer {
     background-color: #e23744;
     color: white;
+
     text-align: center;
+
     padding: 20px;
-    position: relative;
-    bottom: 0;
+
     width: 100%;
+}
+
+
+/* =========================
+   Responsive Design
+========================= */
+
+@media (max-width: 768px) {
+
+    header {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    header ul {
+        margin-top: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    header ul li {
+        margin: 5px 10px;
+    }
+
+    main {
+        padding: 20px;
+    }
+
+    main section {
+        padding: 30px 20px;
+    }
+
+    main section:first-of-type {
+        min-height: 500px;
+    }
+
+    main section:first-of-type p {
+        font-size: 20px;
+    }
+
+    main section:first-of-type img {
+        height: 80px;
+    }
+
+    main section:nth-of-type(2) h2 {
+        font-size: 25px;
+    }
+
+    .feature {
+        width: 100%;
+        max-width: 350px;
+    }
 }
